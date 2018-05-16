@@ -1,0 +1,10 @@
+print('How many loops do you want to do?')
+i = input()
+
+if i:
+    if(int(i) >10):
+        print('Please pick number less than 10')
+    else:
+        print("you entered " + i)
+else:
+    print('no number entered.')
