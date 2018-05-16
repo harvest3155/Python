@@ -1,0 +1,165 @@
+import math
+import random
+import ctypes
+import time
+import os
+
+B1 = 0
+B2 = 0
+B3 = 0 
+B4 = 0
+S = 0
+B = 0
+O = 0
+Score = 0
+
+while O < 3:
+#change number being multiple to adjust weighted outcomes.
+        
+        hit_ball = [1] * 4 
+        hit_strike = [2] * 3
+        hit_firstBase = [3] * 2
+        hit_secondBase = [4] * 2
+        hit_thirdBase = [5] * 1
+        hit_homerun = [6] * 1
+        hit_out = [7] * 3
+
+        hits = hit_ball + hit_strike + hit_firstBase + hit_secondBase + hit_thirdBase + hit_homerun + hit_out
+        no_swing = hit_ball + hit_strike
+
+        swing = input("Would you like to swing(Y/N): ")
+        
+        if swing in ['n', 'N']:
+                p_hit = int(random.choice(no_swing))
+                
+        elif swing in ['y', 'Y']:
+                p_hit = int(random.choice(hits))
+                
+        else:
+                print ("Invalid Selection")
+                continue
+        
+        p_hit_word = 0
+        
+        if p_hit == int(1):
+                p_hit_word = "Ball"
+        elif p_hit == int(2):
+                p_hit_word = "Strike!!!"
+        elif p_hit == int(3):
+                p_hit_word = "Base Hit"
+        elif p_hit == int(4):
+                p_hit_word = "Hit a Double"
+        elif p_hit == int(5):
+                p_hit_word = "Hit a Triple"
+        elif p_hit == int(6):
+                p_hit_word = "Home Run!!!!!"
+        elif p_hit == int(7):
+                p_hit_word = "Out"                     
+
+
+        if p_hit ==int(1):
+                B += 1
+                if B == 4:
+                    print("Walk")
+                    B = 0
+                    S = 0
+                    p_hit = int(3)
+                    print(p_hit)
+
+        if p_hit == int(2):
+                S += 1
+                if S == 3:
+                    print("Strikeout")
+                    O += 1
+                    S = 0
+                    B = 0
+            
+        if p_hit == int(7):
+                O += 1
+                S = 0
+                B = 0
+
+        if p_hit == int(3):
+                if B3 == "X":
+                    B3 = 0;
+                    Score = Score + 1
+                if B2 == "X":
+                    B2 = 0
+                    B3 = "X"
+                if B1 == "X":
+                    B1 = 0
+                    B2 = "X"
+                B1 = "X"
+                S = 0
+                B = 0
+
+        if p_hit == int(4):
+                if B3 == "X":
+                    B3 = 0
+                    Score = Score + 1
+                if B2 == "X":
+                    B2 = 0
+                    Score = Score + 1
+                if B1 == "X":
+                    B1 = 0
+                    B3 = "X"
+                B2 = "X"
+                S = 0
+                B = 0
+
+        if p_hit == int(5):
+                if B3 == "X":
+                    B3 = 0
+                    Score = Score + 1
+                if B2 == "X":
+                    B2 = 0
+                    Score = Score + 1
+                if B1 == "X":
+                    B1 = 0
+                    Score = Score + 1
+                B3 = "X" 
+                S = 0
+                B = 0
+
+        if p_hit == int(6):
+                if (B3 =="X" or B2 =="X" or B1 =="X"):
+                    if B3 == "X":
+                        B3 = 0
+                        Score = Score + 1
+                    if B2 == "X":
+                        B2 = 0
+                        Score = Score + 1
+                    if B1 == "X":
+                        B1 = 0
+                        Score = Score + 1
+                Score = Score + 1
+                S = 0
+                B = 0
+
+
+
+        print(p_hit_word)
+
+        print("          [",B2,"]           ")
+        print("        +        +         ")   
+        print("      +            +       ")   
+        print("    +                +     ")   
+        print("  +                    +   ")     
+        print("[",B3,"]               [",B1,"]")
+        print("  +                    +   ")
+        print("    +                +     ")
+        print("      +            +       ")
+        print("        +        +         ")
+        print("          [",B4,"]           ")
+
+        print("")
+        print("===========================")
+        print("Number of Balls: ", B,)
+        print("Number of Strikes: ", S)
+        print("Number of Out: ", O)
+        print("Score", Score)
+        print("===========================")
+        print("")
+
+        if O ==3:
+                print("Inning Over!")
